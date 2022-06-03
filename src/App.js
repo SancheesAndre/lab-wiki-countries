@@ -1,10 +1,10 @@
 import './App.css';
-import Navbar from './components/Navbar';
-import CountriesList from './components/CountriesList';
-import CountriesDetails from './components/CountryDetails';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import axios from 'axios';
+import Navbar from './components/Navbar';
+import CountriesList from './components/CountriesList';
+import CountriesDetails from './components/CountryDetails';
 
 function App() {
   const [countries, setCountries] = useState()
@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     axios.get('https://ih-countries-api.herokuapp.com/countries')
       .then(response => {
-        setCountries(response.data)
+        setCountries(response.data.reverse())
         setLoading(false)
       })
       .catch(error => console.log(error))
@@ -28,7 +28,7 @@ function App() {
           {
             !loading && (
               <>
-                <CountriesList />
+                <CountriesList countries={countries} />
                 <Routes>
                   <Route path='/' element={<CountriesDetails countries={countries} />} />
                   <Route path='/:id' element={<CountriesDetails countries={countries} />} />

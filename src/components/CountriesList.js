@@ -1,10 +1,8 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import countriesData from './../countries.json'
 
 const CountriesList = (props) => {
 
-    const [countries, setCountries] = useState(countriesData)
+    const { countries } = props
 
 
     return (
@@ -18,7 +16,7 @@ const CountriesList = (props) => {
                         to={country.alpha3Code}
                         key={country.alpha3Code}>
                         <li className='list-group-item list-group-item-action ' >
-                            <img className='flag-img'  
+                            <img className='flag-img'
                                 src={`https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLocaleLowerCase()}.png`}
                                 alt={country.alpha2Code} />
                             {country.name.common}
