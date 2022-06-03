@@ -4,9 +4,11 @@ const Navbar = () => {
 
 
     return(
-        <div>
-            <h1 className="navbar">WikiCountries</h1>
+        <nav className="navbar navbar-dark bg-primary mb-3">
+        <div className="container">
+          <a className="navbar-brand" href="/">WikiCountries</a>
         </div>
+      </nav>
     )
 }
 
