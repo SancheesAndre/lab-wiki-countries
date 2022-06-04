@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import CountriesList from './components/CountriesList';
 import CountriesDetails from './components/CountryDetails';
 
+
 function App() {
   const [countries, setCountries] = useState()
   const [loading, setLoading] = useState('true')

@@ -1,7 +1,13 @@
 import { useParams } from "react-router-dom"
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from "react"
+import { Plane } from "react-loader-spinner"
+import axios from "axios"
+
 
 const CountriesDetails = (props) => {
+    const [loading, setLoading] = useState(true)
+    const [ country, setCountry] = useState({})
     const { countries } = props
     let { id } = useParams()
 
@@ -13,7 +19,22 @@ const CountriesDetails = (props) => {
         })
     }
 
-    const country = findCountry(id)
+    useEffect(() => {
+        axios.get(`https://ih-countries-api.herokuapp.com/countries/${id}`)
+        .then(response => {
+            setCountry(response.data)
+            setLoading(false)
+        })
+        .catch(error => console.log(error))
+    }, [id]) 
+
+    if(loading) {
+        return (
+            <div className="col-7">
+                <Plane color="blue"/>
+            </div>
+        )
+    }
 
     return (
         <div className="col-7">
